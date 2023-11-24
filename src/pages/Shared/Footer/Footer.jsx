@@ -2,8 +2,8 @@
 
 const Footer = () => {
     return (
-        <div>
-fooooooootttt            
+        <div style={{height:'100vh'}}>
+            fooooooootttt
         </div>
     );
 };
