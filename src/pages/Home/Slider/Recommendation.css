@@ -1,0 +1,46 @@
+.swiper-container {
+    position: relative;
+}
+
+.swiper-slide {
+    position: relative;
+}
+
+.swiper-image {
+    width: 248px;
+    height: 405px;
+    
+    border: 1px solid;
+    border-radius: 12px;
+    transition: filter 0.3s ease-in-out;
+}
+
+.slide-overlay {
+    position: absolute;
+    
+    top: 50%;
+    left: 36%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.slide-text {
+    color: black;
+
+}
+
+.slide-description {
+    color: black;
+    
+    
+}
+
+.swiper-slide:hover .swiper-image {
+    filter: blur(3px);
+}
+
+.swiper-slide:hover .slide-overlay {
+    opacity: 1;
+}

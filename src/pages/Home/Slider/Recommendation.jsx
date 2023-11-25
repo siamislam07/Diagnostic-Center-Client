@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
-import Slider from 'react-slick';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import './Recommendation.css';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+
 import Title from "../../Shared/Title/Title";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+
+import slide1 from '../../../assets/home/slider1.webp'
+import slide2 from '../../../assets/home/slider2.jpg'
+import slide3 from '../../../assets/home/slider3.jpg'
+import slide4 from '../../../assets/home/slider6.jpg'
+import slide5 from '../../../assets/home/slider5.png'
 
 const Recommendation = () => {
     const [recommendations, setRecommendations] = useState()
-
+console.log(recommendations);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -23,28 +34,78 @@ const Recommendation = () => {
         fetchData()
     }, [])
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    }
+    const responsiveBreakpoints = {
+        0: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+        },
+        600: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+        },
+        960: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+        },
+    };
+
+
 
     return (
         <Grid sx={{ marginTop: '170px' }}>
             <Title title={'Personalized Recommendation'} />
-            <Container maxWidth="lg" style={{ backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '8px' }}>
-                <Slider {...settings}>
-                    {recommendations?.map((recommendation) => (
-                        <div key={recommendation.id} style={{ backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '8px' }}>
-                        <h3 style={{ color: '#333' }}>{recommendation.title}</h3>
-                        <p style={{ color: '#666' }}>{recommendation.content}</p>
-                        <p style={{ color: '#888' }}>Author: {recommendation.author}</p>
-                        <p style={{ color: '#888' }}>Date: {recommendation.date}</p>
-                    </div>
-                    ))}
-                </Slider>
+            <Container maxWidth="lg" >
+                <Swiper
+                    slidesPerView={3}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                    breakpoints={responsiveBreakpoints}
+                >
+                    <SwiperSlide className="swiper-slide">
+                        <img className="swiper-image" src={slide1} alt="Recommendation_Slider" />
+                        <div className="slide-overlay">
+                            <Typography gutterBottom variant="h6" className="slide-text">{recommendations?.[0]?.title}</Typography>
+                            <Typography variant="body2" sx={{fontWeight:700, fontSize: '1rem'}} className="slide-description">{recommendations?.[0]?.content}</Typography>
+                        </div>
+                    </SwiperSlide>
+
+                    <SwiperSlide className="swiper-slide">
+                        <img className="swiper-image" src={slide2} alt="Recommendation_Slider" />
+                        <div className="slide-overlay">
+                            <Typography gutterBottom  variant="h6" className="slide-text">{recommendations?.[1]?.title}</Typography>
+                            <Typography variant="body2" sx={{fontWeight:700, fontSize: '1rem'}} className="slide-description">{recommendations?.[1]?.content}</Typography>
+                        </div>
+                    </SwiperSlide>
+                    
+                    <SwiperSlide className="swiper-slide">
+                        <img className="swiper-image" src={slide3} alt="Recommendation_Slider" />
+                        <div className="slide-overlay">
+                            <Typography gutterBottom variant="h6" className="slide-text">{recommendations?.[2]?.title}</Typography>
+                            <Typography variant="body2" sx={{fontWeight:700, fontSize: '1rem'}} className="slide-description">{recommendations?.[2]?.content}</Typography>
+                        </div>
+                    </SwiperSlide>
+
+                    <SwiperSlide className="swiper-slide">
+                        <img className="swiper-image" src={slide4} alt="Recommendation_Slider" />
+                        <div className="slide-overlay">
+                            <Typography gutterBottom variant="h6" className="slide-text">{recommendations?.[3]?.title}</Typography>
+                            <Typography variant="body2" sx={{fontWeight:700, fontSize: '1rem'}} className="slide-description">{recommendations?.[3]?.content}</Typography>
+                        </div>
+                    </SwiperSlide>
+
+                    <SwiperSlide className="swiper-slide">
+                        <img className="swiper-image" src={slide5} alt="Recommendation_Slider" />
+                        <div className="slide-overlay">
+                            <Typography gutterBottom variant="h6" className="slide-text">{recommendations?.[4]?.title}</Typography>
+                            <Typography variant="body2" sx={{fontWeight:700, fontSize: '1rem'}} className="slide-description">{recommendations?.[4]?.content}</Typography>
+                        </div>
+                    </SwiperSlide>
+                    
+                </Swiper>
             </Container>
         </Grid>
     );
