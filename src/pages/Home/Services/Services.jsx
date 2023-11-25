@@ -31,14 +31,8 @@ const Services = () => {
                     </Grid>
 
                     <Grid item xs={12} md={6} lg={3} textAlign={'center'} sx={{ transition: 'transform 0.4s' }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'scale(1.05)'
-                            e.currentTarget.style.boxShadow = '28px 28px 50px 0 rgba(13, 39, 80, 0.16)';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = 'scale(1.0)'
-                            e.currentTarget.style.boxShadow = '-23px -23px 45px 0 rgba(255, 255, 255, 1)';
-                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
                     >
                         <Paper sx={{p:3, }} elevation={3}>
 
@@ -48,8 +42,14 @@ const Services = () => {
                     </Grid>
 
                     <Grid item xs={12} md={6} lg={3} textAlign={'center'} sx={{   transition: 'transform 0.4s' }}
-                        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.05)'
+                            e.currentTarget.style.boxShadow = '28px 28px 50px 0 rgba(13, 39, 80, 0.16)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'scale(1.0)'
+                            e.currentTarget.style.boxShadow = '-23px -23px 45px 0 rgba(255, 255, 255, 1)';
+                        }}
                     >
                         <Paper sx={{p:3, }} elevation={3}>
                             <ThumbUpAltIcon color="primary" sx={{ fontSize: '4rem' }} />

@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "title": "Health Tip #1",
+        "content": "Stay hydrated by drinking at least 8 glasses of water every day.",
+        "author": "Dr. Wellness",
+        "date": "2023-11-24"
+    },
+    {
+        "id": 2,
+        "title": "Preventive Measure #1",
+        "content": "Wash your hands regularly to prevent the spread of germs and infections.",
+        "author": "Dr. Prevention",
+        "date": "2023-11-25"
+    },
+    {
+        "id": 3,
+        "title": "Upcoming Test Recommendation #1",
+        "content": "Consider scheduling a blood pressure test to monitor your cardiovascular health.",
+        "author": "Dr. Cardiology",
+        "date": "2023-11-26"
+    },
+    {
+        "id": 4,
+        "title": "Health Tip #2",
+        "content": "Include a variety of colorful fruits and vegetables in your diet for a balanced nutrition.",
+        "author": "Dr. Nutrition",
+        "date": "2023-11-27"
+    },
+    {
+        "id": 5,
+        "title": "Upcoming Test Recommendation #2",
+        "content": "It's time for your annual cholesterol check. Schedule a test for a comprehensive assessment.",
+        "author": "Dr. Cardiology",
+        "date": "2023-11-28"
+    }
+]

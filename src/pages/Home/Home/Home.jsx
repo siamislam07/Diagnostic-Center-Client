@@ -1,5 +1,8 @@
 import Banner from "../Banner/Banner";
+import FeaturedTests from "../Featured Tests/FeaturedTests";
 import Services from "../Services/Services";
+import Recommendation from "../Slider/Recommendation";
+
 
 
 const Home = () => {
@@ -7,7 +10,8 @@ const Home = () => {
         <div>
             <Banner />
             <Services />
-            
+            <FeaturedTests />
+            <Recommendation />
         </div>
     );
 };
