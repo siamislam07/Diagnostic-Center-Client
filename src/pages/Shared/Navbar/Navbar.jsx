@@ -132,7 +132,7 @@ function Navbar() {
                                     key={page}
                                     onClick={handleCloseNavMenu}
                                     component={Link}
-                                    to={page === 'Login' ? '/login' : (page === 'Register' ? '/register' : undefined)}
+                                    to={page === 'Login' ? '/login' : (page === 'Register' ? '/register': (page ==='All Tests')?'/all-tests' : undefined)}
                                     sx={{ my: 2, mr: 2, color: 'white', display: 'block', border: '1px solid', textAlign: "center", fontWeight: '600' }}
                                 >
                                     {page}
