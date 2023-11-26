@@ -4,9 +4,9 @@ import { useLottie } from "lottie-react";
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
-import BloodtypeIcon from '@mui/icons-material/Bloodtype';
+
 import { useEffect, useState } from "react";
-import { useAsyncError } from "react-router-dom";
+import { Link, useAsyncError } from "react-router-dom";
 
 
 const Register = () => {
@@ -69,10 +69,11 @@ const Register = () => {
     const [upazilaInput, setUpazilaInput] = useState()
     const [blood, setBlood] = useState()
     const [password, setPassword] = useState()
+    const [ConfrmPassword, setConfrmPassword] = useState()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('form ', name, email,districtInput ,upazilaInput , password, blood);
+        console.log('form ', name, email, districtInput, upazilaInput, password, blood, ConfrmPassword);
     }
 
     return (
@@ -82,7 +83,7 @@ const Register = () => {
                     <Avatar sx={{ width: 56, height: 56 }}>
                         <span>{View}</span>
                     </Avatar>
-                    <Typography variant="h5" style={{ margin: 0, marginBottom: '18px' }}>Register</Typography>
+                    <Typography variant="h5" style={{ margin: 0, marginBottom: '18px', fontWeight: 700 }}>Register</Typography>
                 </Grid>
 
                 <form onSubmit={handleSubmit}>
@@ -129,7 +130,7 @@ const Register = () => {
                                 id="filled-select-currency-native"
                                 select
                                 label="Upazila"
-                                defaultValue="A+"
+                                defaultValue=""
                                 SelectProps={{
                                     native: true,
                                 }}
@@ -179,7 +180,7 @@ const Register = () => {
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField onBlur={e => setPassword(e.target.value)} required fullWidth variant="filled" type="password" label="Confirm Password" ></TextField>
+                            <TextField onBlur={e => setConfrmPassword(e.target.value)} required fullWidth variant="filled" type="password" label="Confirm Password" ></TextField>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -188,10 +189,13 @@ const Register = () => {
                                 <VisuallyHiddenInput accept=".jpg, .png" type="file" />
                             </Button>
                         </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Button fullWidth variant="contained" type="submit" >
+                        <Grid item xs={12} md={6} >
+                            <Button fullWidth variant="contained" type="submit"  >
                                 Register
                             </Button>
+                        </Grid>
+                        <Grid item>
+                            <Typography>Already Registered! Please <Link to="/login">Login</Link></Typography>
                         </Grid>
                     </Grid>
                 </form>

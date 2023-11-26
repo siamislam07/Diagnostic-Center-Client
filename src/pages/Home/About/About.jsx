@@ -37,9 +37,10 @@ const About = () => {
     const { View } = useLottie(options);
 
     return (
-        <Grid id="FAQ" sx={{ marginTop: '170px' }}>
+        <Grid id="FAQ" sx={{ marginTop: '100px' }}>
             <Title title={'FAQ'}></Title>
-            <Container>
+            <Grid sx={{backgroundColor:'ButtonFace'}}>
+            <Container >
                 <Grid spacing={6} container justifyContent={'center'} alignItems={'start'}>
                     <Grid item xs={12} lg={6}>
                         <span style={{ width: '20px' }}>{View}</span>
@@ -62,6 +63,7 @@ const About = () => {
                     </Grid>
                 </Grid>
             </Container>
+            </Grid>
         </Grid>
     );
 };

@@ -14,6 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import { Link as Scroll } from 'react-scroll';
+import H from '../../../assets/Home/animations/navbarH.json'
+import { useLottie } from 'lottie-react';
+import { Grid } from '@mui/material';
 
 const pages = ['Home','FAQ', 'All Tests', 'Login', 'Register'];
 const settings = ['Dashboard', 'Logout'];
@@ -37,11 +40,19 @@ function Navbar() {
         setAnchorElUser(null);
     };
 
+    const options = {
+        animationData: H,
+        loop: 2,
+
+    };
+    const { View } = useLottie(options);
+
     return (
         <AppBar color='info' position="sticky" sx={{ pt: 1 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 10 }} /> */}
+                    <Grid sx={{ display: { xs: 'none', md: 'flex', width: 56 }, mr: 0 }} >{View}</Grid>
                     <Typography
                         variant="h4"
                         noWrap
@@ -57,7 +68,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        HealthHub
+                        ealthHub
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyItems: 'end' }}>
