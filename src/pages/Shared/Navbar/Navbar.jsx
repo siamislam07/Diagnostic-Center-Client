@@ -13,8 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import { Link as Scroll } from 'react-scroll';
 
-const pages = ['Home', 'All Tests','Login', 'Register'];
+const pages = ['Home','FAQ', 'All Tests', 'Login', 'Register'];
 const settings = ['Dashboard', 'Logout'];
 
 function Navbar() {
@@ -37,7 +38,7 @@ function Navbar() {
     };
 
     return (
-        <AppBar component="nav" color='info' position="static" sx={{pt: 1}}>
+        <AppBar color='info' position="sticky" sx={{ pt: 1 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -59,7 +60,7 @@ function Navbar() {
                         HealthHub
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyItems:'end'  }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyItems: 'end' }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -95,7 +96,7 @@ function Navbar() {
                             ))}
                         </Menu>
                     </Box>
-                    
+
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
@@ -115,22 +116,33 @@ function Navbar() {
                     >
                         Health
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent:'end' }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                component={Link}
-                                to={page==='Login'? '/login':(page === 'Register'? '/register': undefined)}
-                                sx={{ my: 2,mr:2, color: 'white', display: 'block', border:'1px solid',textAlign:"center", fontWeight:'600' }}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end' }}>
+                        {pages.map((page, index) => (
+                            <Scroll
+                                key={index}
+                                activeClass={page}
+                                to={page}
+                                spy={true}
+                                smooth={true}
+                                offset={50}
+                                duration={500}
+                                
                             >
-                                {page}
-                            </Button>
+                                <Button
+                                    key={page}
+                                    onClick={handleCloseNavMenu}
+                                    component={Link}
+                                    to={page === 'Login' ? '/login' : (page === 'Register' ? '/register' : undefined)}
+                                    sx={{ my: 2, mr: 2, color: 'white', display: 'block', border: '1px solid', textAlign: "center", fontWeight: '600' }}
+                                >
+                                    {page}
+                                </Button>
+                            </Scroll>
                         ))}
                         {/* <Link to='/register'><Button sx={{ my: 2,mr:2, color: 'white',  border:'1px solid' }}>Register</Button></Link> */}
                     </Box>
 
-                        {/* TODO: conditional this with user if login or not */}
+                    {/* TODO: conditional this with user if login or not */}
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

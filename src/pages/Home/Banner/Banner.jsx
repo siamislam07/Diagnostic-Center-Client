@@ -15,11 +15,11 @@ const Banner = () => {
 
             }}
         >
-            <Container sx={{ height: '100%' }} maxWidth="xl">
+            <Container id="Home" sx={{ height: '100%' }} maxWidth="xl">
                 <Grid  height={'100%'} container="xl" justifyContent={'start'} alignItems={'start'}>
                     <Grid item xs={12} md={8}>
                         <Typography gutterBottom sx={{ fontWeight: 600 }} variant="h1" color="white">
-                            Trusted Dental Center
+                            Trusted Diagnostic Center
                         </Typography>
                         <Typography sx={{ fontSize: '1.25rem' }} color="white">
                             Trusted Dental Center Trusted Dental Center Trusted Dental Center Trusted Dental Center Trusted Dental Center Trusted Dental Center
