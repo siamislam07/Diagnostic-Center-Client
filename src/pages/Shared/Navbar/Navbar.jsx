@@ -18,7 +18,7 @@ import H from '../../../assets/Home/animations/navbarH.json'
 import { useLottie } from 'lottie-react';
 import { Grid } from '@mui/material';
 
-const pages = ['Home','FAQ', 'All Tests', 'Login', 'Register'];
+const pages = ['Home', 'FAQ', 'All Tests', 'Login', 'Register'];
 const settings = ['Dashboard', 'Logout'];
 
 function Navbar() {
@@ -52,12 +52,12 @@ function Navbar() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 10 }} /> */}
-                    <Grid sx={{ display: { xs: 'none', md: 'flex', width: 56 }, mr: 0 }} >{View}</Grid>
+                    <Grid sx={{ display: { xs: 'none', md: 'flex', width: 56 }, mr: -1 }} >{View}</Grid>
                     <Typography
                         variant="h4"
                         noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                        component={Link}
+                        to="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -137,13 +137,13 @@ function Navbar() {
                                 smooth={true}
                                 offset={50}
                                 duration={500}
-                                
+
                             >
                                 <Button
                                     key={page}
                                     onClick={handleCloseNavMenu}
                                     component={Link}
-                                    to={page === 'Login' ? '/login' : (page === 'Register' ? '/register': (page ==='All Tests')?'/all-tests' : undefined)}
+                                    to={page === 'Login' ? '/login' : (page === 'Register' ? '/register' : (page === 'All Tests') ? '/all-tests' : undefined)}
                                     sx={{ my: 2, mr: 2, color: 'white', display: 'block', border: '1px solid', textAlign: "center", fontWeight: '600' }}
                                 >
                                     {page}

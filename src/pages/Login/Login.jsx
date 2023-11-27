@@ -1,6 +1,7 @@
 import { Avatar, Button, Container, Grid, Paper, TextField, Typography } from "@mui/material";
 import { useLottie } from "lottie-react";
 import { useState } from "react";
+import WatchingYou, { useWatchingYou } from 'react-watching-you';
 
 import loginicon from '../../assets/Home/animations/loginicon.json'
 import { Link } from "react-router-dom";
@@ -48,11 +49,15 @@ const Login = () => {
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Typography>Already Registered! Please <Link to="/register">Login</Link></Typography>
+                            <Typography>Do not Register yet! Please <Link to="/register">Register</Link></Typography>
                         </Grid>
                     </Grid>
                 </form>
             </Paper>
+
+
+
+            
         </Grid>
     );
 };

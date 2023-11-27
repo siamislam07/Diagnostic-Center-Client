@@ -7,7 +7,11 @@ import { styled } from '@mui/material/styles';
 
 import { useEffect, useState } from "react";
 import { Link, useAsyncError } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { toast } from "react-toastify";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
+const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`
 
 const Register = () => {
     const [district, setDistrict] = useState([])
@@ -22,6 +26,7 @@ const Register = () => {
                 const res = await fetch('/districts.json')
                 const data = await res.json()
                 setDistrict(data)
+                
             }
             catch (error) {
                 console.log('error fetching data', error);
@@ -62,18 +67,61 @@ const Register = () => {
 
     };
     const { View } = useLottie(options);
+    // console.log('from state', selectedFile);
+    const axiosPublic = useAxiosPublic()
+    
+    // const handleFileChange = (event) => {
 
-    const [name, setName] = useState()
-    const [email, setEmail] = useState()
-    const [districtInput, setDistrictInput] = useState()
-    const [upazilaInput, setUpazilaInput] = useState()
-    const [blood, setBlood] = useState()
-    const [password, setPassword] = useState()
-    const [ConfrmPassword, setConfrmPassword] = useState()
+    //     const file = event.target.files[0];
+    //     setSelectedFile(file);
 
-    const handleSubmit = (e) => {
+
+    //     console.log('Selected File:', file.name);
+    // };
+    
+    // const [name, setName] = useState()
+    // const [email, setEmail] = useState()
+    // const [districtInput, setDistrictInput] = useState()
+    // const [upazilaInput, setUpazilaInput] = useState()
+    // const [blood, setBlood] = useState()
+    // const [password, setPassword] = useState()
+    // const [ConfrmPassword, setConfrmPassword] = useState()
+    
+    const [selectedFile, setSelectedFile] = useState(null);
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('form ', name, email, districtInput, upazilaInput, password, blood, ConfrmPassword);
+        const form = e.target
+
+        const status = 'active'
+        const name = form.name.value
+        const email = form.email.value
+        const district = form.district.value
+        const upazila = form.upazila.value
+        const blood = form.blood.value
+        const password = form.password.value
+        const confirmPassword = form.confirmPassword.value
+        const img = form.img.files[0]
+        const formData = new FormData()
+        formData.append('image', img)
+        
+        try {
+            const { data } = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_HOSTING_KEY}`, formData)
+            console.log(data);
+            if (data.status === 200) {
+                toast.success('Image upload successfully')
+            }
+            setSelectedFile(data.display_url)
+        }
+        catch (err) {
+            console.log(err);
+
+        }
+
+        // console.log('form ', name, email, districtInput, upazilaInput, password, blood, ConfrmPassword);
+        // console.log(formData);
+        console.log('form 111',status, name, email,selectedFile, district, upazila, password, blood, confirmPassword);
+        // console.log(img);
+
     }
 
     return (
@@ -90,11 +138,11 @@ const Register = () => {
                     <Grid container spacing={2}>
 
                         <Grid item xs={12} md={6}>
-                            <TextField onBlur={e => setName(e.target.value)} required fullWidth variant="filled" label="Your Name"></TextField>
+                            <TextField name="name" required fullWidth variant="filled" label="Your Name"></TextField>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField onChange={e => setEmail(e.target.value)} required fullWidth variant="filled" label="Email" ></TextField>
+                            <TextField name="email" required fullWidth variant="filled" label="Email" ></TextField>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
@@ -105,13 +153,14 @@ const Register = () => {
                                 id="filled-select-currency-native"
                                 select
                                 label="District"
-                                defaultValue="A+"
+                                defaultValue=""
                                 SelectProps={{
                                     native: true,
                                 }}
                                 helperText=""
                                 variant="filled"
-                                onChange={e => setDistrictInput(e.target.value)}
+
+                                name="district"
                             >
                                 {district?.map((option) => (
                                     // console.log(option)
@@ -136,7 +185,8 @@ const Register = () => {
                                 }}
                                 helperText=""
                                 variant="filled"
-                                onChange={e => setUpazilaInput(e.target.value)}
+
+                                name="upazila"
                             >
                                 {upazila?.map((option) => (
                                     // console.log(option)
@@ -158,13 +208,14 @@ const Register = () => {
                                 id="filled-select-currency-native"
                                 select
                                 label="Blood Group"
-                                defaultValue="A+"
+                                defaultValue=""
                                 SelectProps={{
                                     native: true,
                                 }}
                                 helperText=""
                                 variant="filled"
-                                onChange={e => setBlood(e.target.value)}
+
+                                name="blood"
                             >
                                 {currencies.map((option) => (
                                     <option key={option.value} value={option.value}>
@@ -176,17 +227,17 @@ const Register = () => {
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField onBlur={e => setPassword(e.target.value)} required fullWidth variant="filled" type="password" label="Password"></TextField>
+                            <TextField name="password" required fullWidth variant="filled" type="password" label="Password"></TextField>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <TextField onBlur={e => setConfrmPassword(e.target.value)} required fullWidth variant="filled" type="password" label="Confirm Password" ></TextField>
+                            <TextField name="confirmPassword" required fullWidth variant="filled" type="password" label="Confirm Password" ></TextField>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
                             <Button fullWidth component="label" variant="outlined" startIcon={<CloudUploadIcon />}>
                                 Upload Image
-                                <VisuallyHiddenInput accept=".jpg, .png" type="file" />
+                                <VisuallyHiddenInput name="img" accept=".jpg, .png" type="file" />
                             </Button>
                         </Grid>
                         <Grid item xs={12} md={6} >

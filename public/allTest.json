@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "title": "Blood Test",
+        "description": "Complete blood count and blood chemistry analysis.",
+        "image": "https://guardian.ng/wp-content/uploads/2017/01/Blood-test.jpg",
+        "availableDate": {
+            "date": "2023-11-25",
+            "slots": 5
+        }
+    },
+    {
+        "id": 2,
+        "title": "X-ray",
+        "description": "Radiographic imaging of bones and internal organs.",
+        "image": "https://media.istockphoto.com/vectors/medical-xray-test-of-leg-bone-fracture-injury-in-hospital-room-flat-vector-id1270388365",
+        "availableDate": {
+            "date": "2023-11-26",
+            "slots": 7
+        }
+    },
+    {
+        "id": 3,
+        "title": "MRI Scan",
+        "description": "Detailed imaging using magnetic resonance technology.",
+        "image": "https://media.istockphoto.com/id/1288262458/photo/young-mixed-race-male-doctor-in-medical-uniform-touching-button-on-control-panel.jpg?s=2048x2048&w=is&k=20&c=pzu4oOFsM6KqLq84Go8ppsoCrF_Puzac9TLA7SvWL3A=",
+        "availableDate": {
+            "date": "2023-11-27",
+            "slots": 6
+        }
+    },
+    {
+        "id": 3,
+        "title": "MRI Scan",
+        "description": "Detailed imaging using magnetic resonance technology.",
+        "image": "https://media.istockphoto.com/id/1391715795/vector/cholesterol-level-meter-with-high-and-low-fat-test.jpg?s=2048x2048&w=is&k=20&c=im5ehx9wiuU-utLQZ-eBRVyxy3KHO--sdD1MzK5s1-0=",
+        "availableDate": {
+            "date": "2023-11-27",
+            "slots": 6
+        }
+    },
+    {
+        "id": 3,
+        "title": "MRI Scan",
+        "description": "Detailed imaging using magnetic resonance technology.",
+        "image": "https://media.istockphoto.com/id/1391715795/vector/cholesterol-level-meter-with-high-and-low-fat-test.jpg?s=2048x2048&w=is&k=20&c=im5ehx9wiuU-utLQZ-eBRVyxy3KHO--sdD1MzK5s1-0=",
+        "availableDate": {
+            "date": "2023-11-27",
+            "slots": 6
+        }
+    }
+]

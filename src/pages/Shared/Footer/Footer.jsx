@@ -3,7 +3,7 @@ import { Container, Grid, Typography } from "@mui/material";
 
 const Footer = () => {
     return (
-        <Grid style={{ marginTop: '200px' }} sx={{ py: 15, background: ' linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(7,62,156,1) 24%, rgba(0,212,255,1) 92%)' }} >
+        <Grid style={{ marginTop: '200px' }} sx={{  py: ['20%', '15%','10%'], background: ' linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(7,62,156,1) 24%, rgba(0,212,255,1) 92%)' }} >
 
             <Container maxWidth='xl' >
                 <Grid container justifyContent={'center'} alignItems={'center'}>
