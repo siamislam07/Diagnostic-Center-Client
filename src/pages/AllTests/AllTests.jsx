@@ -3,6 +3,7 @@ import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typ
 import img from "../../assets/all-test/book-test-banner2.png"
 import Title from "../Shared/Title/Title";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const AllTests = () => {
     const [testData, setTestData] = useState([])
     // console.log(testData);
@@ -25,14 +26,14 @@ const AllTests = () => {
 
                 }}>
             </Grid>
-            <Title color={{ color: '#023E8A' }} title={'Popular Tests'}>Popular Tests</Title>
+            <Title color={{ color: '#023E8A' }} title={'Popular Tests'}></Title>
             <Container maxWidth="lg">
 
                 <Grid container spacing={3}  >
                     {testData?.map(test => (
                         // console.log(test.title)
-                        
-                        <Grid  key={test.id} item xs={12} md={6} lg={3} >
+
+                        <Grid key={test.id} item xs={12} md={6} lg={3} >
                             <Card sx={{ maxWidth: 345, margin: 'auto' }}>
                                 <CardMedia
                                     sx={{ height: 140 }}
@@ -49,13 +50,15 @@ const AllTests = () => {
                                     <Typography gutterBottom variant="body2" color="text.secondary">
                                         Date: {test.availableDate.date}
                                     </Typography>
-                                    <Typography  variant="" color="text.secondary">
+                                    <Typography variant="" color="text.secondary">
                                         Slots: {test.availableDate.slots}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
                                     {/* <Button size="small">Share</Button> */}
-                                    <Button size="small" variant="outlined">Details</Button>
+                                    <Link to={`/details/${test.id}`}>
+                                        <Button size="small" variant="outlined">Details</Button>
+                                    </Link>
                                 </CardActions>
                             </Card>
                         </Grid>
