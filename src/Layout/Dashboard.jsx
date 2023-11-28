@@ -20,9 +20,10 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { BookOutlined, Home, LocalHospital, Man } from '@mui/icons-material';
+import { BookOutlined, Collections, Home, LocalHospital, Man, PlaylistAddCheckCircle, ViewCarousel } from '@mui/icons-material';
 import H from '../assets/Home/animations/navbarH.json'
 import { useLottie } from 'lottie-react';
+import AllInboxIcon from '@mui/icons-material/AllInbox';
 // import { mainListItems, secondaryListItems } from './listItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
@@ -84,6 +85,8 @@ export default function Dashboard() {
 
     const location = useLocation()
 
+    const isAdmin = true
+
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -91,12 +94,12 @@ export default function Dashboard() {
     const options = {
         animationData: H,
         loop: 2,
-    
+
     };
     const { View } = useLottie(options);
     return (
 
-        
+
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
@@ -144,7 +147,9 @@ export default function Dashboard() {
                             px: [1],
                         }}
                     >
-                        <Typography sx={{width:'40%', margin:'0 auto'}}>{View}</Typography>
+                        {/* used my logo animation */}
+                        <Typography sx={{ width: '40%', margin: '0 auto' }}>{View}</Typography>
+
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />
                         </IconButton>
@@ -152,40 +157,113 @@ export default function Dashboard() {
                     <Divider />
                     <List component="nav">
 
-                        <ListItemButton component={Link}
-                            to={"/dashboard/user"}
-                            selected={location.pathname ==='/dashboard/user'}
-                            >
-                            <ListItemIcon>
-                                <Man />
-                            </ListItemIcon>
-                            <ListItemText primary="My Profile" />
-                        </ListItemButton>
+                        {
+                            isAdmin ? <>
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/users"}
+                                    selected={location.pathname === '/dashboard/users'}
+                                >
+                                    <ListItemIcon>
+                                        <Man />
+                                    </ListItemIcon>
+                                    <ListItemText primary="All users" />
+                                </ListItemButton>
 
-                        <ListItemButton component={Link}
-                            to={"/dashboard/appointments"}
-                            selected={location.pathname ==='/dashboard/appointments'}
-                            >
-                            <ListItemIcon>
-                                <BookOutlined />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary="My Upcoming Appointments" />
-                        </ListItemButton>
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/appointments"}
+                                    selected={location.pathname === '/dashboard/appointments'}
+                                >
+                                    <ListItemIcon>
+                                        <PlaylistAddCheckCircle />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="Add a Test" />
+                                </ListItemButton>
 
-                        <ListItemButton component={Link}
-                            to={"/dashboard/testResult"}
-                            selected={location.pathname ==='/dashboard/testResult'}
-                            >
-                            <ListItemIcon>
-                                <LocalHospital />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary="Test Result" />
-                        </ListItemButton>
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/testResult"}
+                                    selected={location.pathname === '/dashboard/testResult'}
+                                >
+                                    <ListItemIcon>
+                                        <AllInboxIcon />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="All Tests" />
+                                </ListItemButton>
+
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/testResult"}
+                                    selected={location.pathname === '/dashboard/testResult'}
+                                >
+                                    <ListItemIcon>
+                                        <ViewCarousel />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="Reservation" />
+                                </ListItemButton>
+
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/testResult"}
+                                    selected={location.pathname === '/dashboard/testResult'}
+                                >
+                                    <ListItemIcon>
+                                        <LocalHospital />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="Add Banner" />
+                                </ListItemButton>
+
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/testResult"}
+                                    selected={location.pathname === '/dashboard/testResult'}
+                                >
+                                    <ListItemIcon>
+                                        <Collections />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="All Banners" />
+                                </ListItemButton>
+
+
+                            </> : <>
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/user"}
+                                    selected={location.pathname === '/dashboard/user'}
+                                >
+                                    <ListItemIcon>
+                                        <Man />
+                                    </ListItemIcon>
+                                    <ListItemText primary="My Profile" />
+                                </ListItemButton>
+
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/appointments"}
+                                    selected={location.pathname === '/dashboard/appointments'}
+                                >
+                                    <ListItemIcon>
+                                        <BookOutlined />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="My Upcoming Appointments" />
+                                </ListItemButton>
+
+                                <ListItemButton component={Link}
+                                    to={"/dashboard/testResult"}
+                                    selected={location.pathname === '/dashboard/testResult'}
+                                >
+                                    <ListItemIcon>
+                                        <LocalHospital />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="Test Result" />
+                                </ListItemButton>
+
+                            </>
+
+                        }
 
                         <Divider />
-
+                        {/* common for all  */}
                         <ListItemButton component={Link}
                             to={"/"}>
                             <ListItemIcon>
