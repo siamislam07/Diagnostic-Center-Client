@@ -4,11 +4,16 @@ import { useState } from "react";
 import WatchingYou, { useWatchingYou } from 'react-watching-you';
 
 import loginicon from '../../assets/Home/animations/loginicon.json'
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const {login} = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const options = {
         animationData: loginicon,
@@ -20,6 +25,16 @@ const Login = () => {
     const handleSubmit = e => {
         e.preventDefault()
         console.log('from logijn', email, password);
+        login(email, password)
+        .then(result=>{
+            const user = result.user
+            console.log(user);
+            toast.success('Login Successful')
+            navigate(location?.state ? location.state : '/')
+        })
+        .catch(error=>{
+            toast.error(error.message)
+        })
     }
 
     return (

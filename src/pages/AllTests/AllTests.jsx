@@ -8,7 +8,7 @@ const AllTests = () => {
     const [testData, setTestData] = useState([])
     // console.log(testData);
     useEffect(() => {
-        fetch('./allTest.json')
+        fetch('http://localhost:5000/allTests')
             .then(res => res.json())
             .then(data => setTestData(data))
     }, [])

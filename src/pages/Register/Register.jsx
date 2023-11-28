@@ -6,9 +6,12 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 
 import { useEffect, useState } from "react";
-import { Link, useAsyncError } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { toast } from "react-toastify";
+import { imageUpload } from "../../Utils/imageUpload";
+import useAuth from "../../Hooks/useAuth";
+import { saveUser } from "../../Hooks/saveUser";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`
@@ -16,6 +19,8 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${i
 const Register = () => {
     const [district, setDistrict] = useState([])
     const [upazila, setUpazila] = useState([])
+    const navigate = useNavigate()
+    const location = useLocation()
     // console.log(district);
     const currencies = [{ value: '', label: '' }, { value: 'A+', label: 'A+' }, { value: 'A-', label: 'A-' }, { value: 'B+', label: 'B+' }, { value: 'B-', label: 'B-' }, { value: 'AB+', label: 'AB+' }, { value: 'AB-', label: 'AB-' }, { value: 'O+', label: 'O+' }, { value: 'O-', label: 'O-' }
     ]
@@ -26,7 +31,7 @@ const Register = () => {
                 const res = await fetch('/districts.json')
                 const data = await res.json()
                 setDistrict(data)
-                
+
             }
             catch (error) {
                 console.log('error fetching data', error);
@@ -34,6 +39,7 @@ const Register = () => {
         }
         fetchData()
     }, [])
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -67,9 +73,12 @@ const Register = () => {
 
     };
     const { View } = useLottie(options);
+
+    const { createUser, updateUserProfile, logOut } = useAuth()
+
     // console.log('from state', selectedFile);
-    const axiosPublic = useAxiosPublic()
-    
+    // const axiosPublic = useAxiosPublic()
+
     // const handleFileChange = (event) => {
 
     //     const file = event.target.files[0];
@@ -78,7 +87,7 @@ const Register = () => {
 
     //     console.log('Selected File:', file.name);
     // };
-    
+
     // const [name, setName] = useState()
     // const [email, setEmail] = useState()
     // const [districtInput, setDistrictInput] = useState()
@@ -86,13 +95,16 @@ const Register = () => {
     // const [blood, setBlood] = useState()
     // const [password, setPassword] = useState()
     // const [ConfrmPassword, setConfrmPassword] = useState()
-    
-    const [selectedFile, setSelectedFile] = useState(null);
+
+    // const [selectedFile, setSelectedFile] = useState(null);
+
     const handleSubmit = async (e) => {
+
         e.preventDefault()
         const form = e.target
 
         const status = 'active'
+
         const name = form.name.value
         const email = form.email.value
         const district = form.district.value
@@ -101,25 +113,53 @@ const Register = () => {
         const password = form.password.value
         const confirmPassword = form.confirmPassword.value
         const img = form.img.files[0]
-        const formData = new FormData()
-        formData.append('image', img)
-        
+        const obj = { status, name, email, district, upazila, password, blood }
+
         try {
-            const { data } = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_HOSTING_KEY}`, formData)
-            console.log(data);
-            if (data.status === 200) {
-                toast.success('Image upload successfully')
-            }
-            setSelectedFile(data.display_url)
+            const imageData = await imageUpload(img)
+
+            const result = await createUser(email, password)
+
+            await updateUserProfile(name, imageData?.data?.display_url)
+            console.log(result);
+
+            //todo: save data in user data
+            const dbResponse = await saveUser(result?.user, obj)
+            console.log(dbResponse);
+            toast.success('Register Successful')
+            navigate(location?.state ? location.state : '/')
+            toast.warning('Please Login')
+            logOut()
+                .then()
+                .catch()
+            // result.user.email
+
+
+            // get token
         }
         catch (err) {
             console.log(err);
-
+            toast.error(err.message)
         }
+        // const formData = new FormData()
+        // formData.append('image', img)
+
+        // try {
+        //     const { data } = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_HOSTING_KEY}`, formData)
+        //     console.log(data);
+        //     if (data.status === 200) {
+        //         toast.success('Image upload successfully')
+        //     }
+        //     setSelectedFile(data.display_url)
+        // }
+        // catch (err) {
+        //     console.log(err);
+
+        // }
 
         // console.log('form ', name, email, districtInput, upazilaInput, password, blood, ConfrmPassword);
         // console.log(formData);
-        console.log('form 111',status, name, email,selectedFile, district, upazila, password, blood, confirmPassword);
+
         // console.log(img);
 
     }

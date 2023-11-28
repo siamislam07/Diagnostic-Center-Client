@@ -17,6 +17,7 @@ import { Link as Scroll } from 'react-scroll';
 import H from '../../../assets/Home/animations/navbarH.json'
 import { useLottie } from 'lottie-react';
 import { Grid } from '@mui/material';
+import useAuth from '../../../Hooks/useAuth';
 
 const pages = ['Home', 'FAQ', 'All Tests', 'Login', 'Register'];
 const settings = ['Dashboard', 'Logout'];
@@ -24,6 +25,7 @@ const settings = ['Dashboard', 'Logout'];
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const { user, logOut } = useAuth()
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -39,6 +41,13 @@ function Navbar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogout = () => {
+        console.log('logout alhamdulillah');
+        logOut()
+            .then()
+            .catch()
+    }
 
     const options = {
         animationData: H,
@@ -102,7 +111,15 @@ function Navbar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Button
+                                        key={page}
+                                        onClick={handleCloseNavMenu}
+                                        component={Link}
+                                        to={page === 'Login' ? '/login' : (page === 'Register' ? '/register' : (page === 'All Tests') ? '/all-tests' : undefined)}
+                                        sx={{ mr: 2, color: 'black', display: 'block', }}
+                                    >
+                                        {page}
+                                    </Button>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -139,50 +156,76 @@ function Navbar() {
                                 duration={500}
 
                             >
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    component={Link}
-                                    to={page === 'Login' ? '/login' : (page === 'Register' ? '/register' : (page === 'All Tests') ? '/all-tests' : undefined)}
-                                    sx={{ my: 2, mr: 2, color: 'white', display: 'block', border: '1px solid', textAlign: "center", fontWeight: '600' }}
-                                >
-                                    {page}
-                                </Button>
+                                {
+                                    (page === 'Login' || page === 'Register') &&  user ? null : (
+                                        <Button
+                                            key={page}
+                                            onClick={handleCloseNavMenu}
+                                            component={Link}
+                                            to={page === 'Login' ? '/login' : (page === 'Register' ? '/register' : (page === 'All Tests') ? '/all-tests' : undefined)}
+                                            sx={{ my: 2, mr: 2, color: 'white', display: 'block', border: '1px solid', textAlign: "center", fontWeight: '600' }}
+                                        >
+                                            {page}
+                                        </Button>
+                                    )
+                                }
                             </Scroll>
                         ))}
-                        {/* <Link to='/register'><Button sx={{ my: 2,mr:2, color: 'white',  border:'1px solid' }}>Register</Button></Link> */}
+
                     </Box>
 
-                    {/* TODO: conditional this with user if login or not */}
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
+
+                    {
+                        user && <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <Avatar alt={user?.displayName} src={user?.photoURL ? user.photoURL : "/static/images/avatar/2.jpg"} />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                {settings.map((setting) => (
+                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">{
+                                            setting === 'Dashboard' ? (
+                                                <Button
+                                                    component={Link}
+                                                    to='/dashboard'
+                                                    sx={{ color: 'inherit', textDecoration: 'none' }}
+                                                >
+                                                    {setting}
+                                                </Button>
+                                            ) : setting === 'Logout' ? (
+                                                <Button
+
+                                                    onClick={handleLogout}
+                                                    sx={{ color: 'inherit', textDecoration: 'none' }}
+                                                >
+                                                    {setting}
+                                                </Button>
+                                            ) : (
+                                                setting
+                                            )
+                                        }</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
+                    }
                 </Toolbar>
             </Container>
         </AppBar>
