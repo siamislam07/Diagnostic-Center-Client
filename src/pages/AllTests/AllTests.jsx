@@ -56,7 +56,7 @@ const AllTests = () => {
                                 </CardContent>
                                 <CardActions>
                                     {/* <Button size="small">Share</Button> */}
-                                    <Link to={`/details/${test.id}`}>
+                                    <Link to={`/details/${test._id}`}>
                                         <Button size="small" variant="outlined">Details</Button>
                                     </Link>
                                 </CardActions>

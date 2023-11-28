@@ -22,11 +22,11 @@ const TestDetails = () => {
 
     useEffect(() => {
         setLoading(true)
-        fetch('/allTest.json')
+        fetch('http://localhost:5000/allTests')
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
-                const oneData = data.find((tests) => tests.id === Number(id))
+                const oneData = data.find((tests) => tests._id === (id))
                 setTest(oneData)
                 setLoading(false)
             })
@@ -42,7 +42,7 @@ const TestDetails = () => {
 
                 sx={{
                     py: ['20%', '15%', '10%'],
-                    backgroundImage: `linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url(${test.image})`,
+                    backgroundImage: `linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url(${test?.image})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     overflow:'hidden',
@@ -57,8 +57,8 @@ const TestDetails = () => {
                         <span style={{ width: '10px', height: '' }}>{View}</span>
                     </Grid>
                     <Grid item xs={12} lg={6} sx={{ marginTop: '30px' }}>
-                        <Typography variant="h2">{test.title}</Typography>
-                        <Typography variant="h4">{test.description}</Typography>
+                        <Typography variant="h2">{test?.title}</Typography>
+                        <Typography variant="h4">{test?.description}</Typography>
                         <Button sx={{ marginTop: '12rem' }} variant="outlined" fullWidth>Book Now</Button>
                     </Grid>
                     

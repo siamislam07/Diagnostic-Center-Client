@@ -10,6 +10,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AllTests from "../pages/AllTests/AllTests";
 import TestDetails from "../pages/TestDetails/TestDetails";
+import PrivateRoute from "./PrivateRoute";
 
 export const Router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ export const Router = createBrowserRouter([
             },
             {
                 path:'/details/:id',
-                element:<TestDetails></TestDetails>
+                element:<PrivateRoute><TestDetails></TestDetails></PrivateRoute>
             }
         ]
     },
