@@ -30,7 +30,7 @@ const Login = () => {
             const user = result.user
             console.log(user);
             toast.success("Login successful! Welcome back! 🎉")
-            navigate(location?.state ? location.state : '/')
+            navigate(location?.state ? location.state : '/dashboard/user')
         })
         .catch(error=>{
             toast.error(error.message)

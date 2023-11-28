@@ -208,7 +208,7 @@ function Navbar() {
                                             setting === 'Dashboard' ? (
                                                 <Button
                                                     component={Link}
-                                                    to='/dashboard'
+                                                    to='/dashboard/user'
                                                     sx={{ color: 'inherit', textDecoration: 'none' }}
                                                 >
                                                     {setting}
