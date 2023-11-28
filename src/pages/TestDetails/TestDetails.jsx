@@ -38,7 +38,7 @@ const TestDetails = () => {
         .then(res=>{
             console.log(res.data);
             if (res.data.insertedId) {
-                toast.success('Booked Successfully')
+                toast.success('Booked Successfully, Please Check you dashboard')
             }
         })
         console.log(testItem);

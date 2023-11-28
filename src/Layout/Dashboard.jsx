@@ -19,7 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { BookOutlined, Home, LocalHospital, Man } from '@mui/icons-material';
 import H from '../assets/Home/animations/navbarH.json'
 import { useLottie } from 'lottie-react';
@@ -81,6 +81,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
+
+    const location = useLocation()
+
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -148,8 +151,11 @@ export default function Dashboard() {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
+
                         <ListItemButton component={Link}
-                            to={"/dashboard/user"}>
+                            to={"/dashboard/user"}
+                            selected={location.pathname ==='/dashboard/user'}
+                            >
                             <ListItemIcon>
                                 <Man />
                             </ListItemIcon>
@@ -157,7 +163,9 @@ export default function Dashboard() {
                         </ListItemButton>
 
                         <ListItemButton component={Link}
-                            to={"/dashboard/appointments"}>
+                            to={"/dashboard/appointments"}
+                            selected={location.pathname ==='/dashboard/appointments'}
+                            >
                             <ListItemIcon>
                                 <BookOutlined />
                             </ListItemIcon>
@@ -166,7 +174,9 @@ export default function Dashboard() {
                         </ListItemButton>
 
                         <ListItemButton component={Link}
-                            to={"/dashboard/testResult"}>
+                            to={"/dashboard/testResult"}
+                            selected={location.pathname ==='/dashboard/testResult'}
+                            >
                             <ListItemIcon>
                                 <LocalHospital />
                             </ListItemIcon>

@@ -29,6 +29,7 @@
     "react-toastify": "^9.1.3",
     "react-watching-you": "^0.0.11",
     "sort-by": "^1.2.0",
+    "sweetalert2": "^11.10.1",
     "swiper": "^11.0.5",
     "yup": "^1.3.2"
   },
