@@ -111,15 +111,19 @@ function Navbar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Button
-                                        key={page}
-                                        onClick={handleCloseNavMenu}
-                                        component={Link}
-                                        to={page === 'Login' ? '/login' : (page === 'Register' ? '/register' : (page === 'All Tests') ? '/all-tests' : undefined)}
-                                        sx={{ mr: 2, color: 'black', display: 'block', }}
-                                    >
-                                        {page}
-                                    </Button>
+                                    {
+                                        (page === 'Login' || page === 'Register') && user ? null : (
+                                            <Button
+                                                key={page}
+                                                onClick={handleCloseNavMenu}
+                                                component={Link}
+                                                to={page === 'Login' ? '/login' : (page === 'Register' ? '/register' : (page === 'All Tests') ? '/all-tests' : undefined)}
+                                                sx={{ mr: 2, display: 'block', }}
+                                            >
+                                                {page}
+                                            </Button>
+                                        )
+                                    }
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -157,7 +161,7 @@ function Navbar() {
 
                             >
                                 {
-                                    (page === 'Login' || page === 'Register') &&  user ? null : (
+                                    (page === 'Login' || page === 'Register') && user ? null : (
                                         <Button
                                             key={page}
                                             onClick={handleCloseNavMenu}
