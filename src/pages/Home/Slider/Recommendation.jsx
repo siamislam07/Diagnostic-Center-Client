@@ -4,7 +4,6 @@ import { Pagination } from 'swiper/modules';
 import './Recommendation.css';
 
 
-import Title from "../../Shared/Title/Title";
 import { Container, Grid, Typography } from "@mui/material";
 
 import 'swiper/css';
@@ -53,12 +52,12 @@ const Recommendation = () => {
 
     return (
         <Grid sx={{
-            position: '', marginTop: '170px', py: 7, backgroundImage: ` linear-gradient(135deg,#0000 18.75%,#361079 0 31.25%,#0000 0),
-        repeating-linear-gradient(45deg,#361079 -6.25% 6.25%,#66b21b 0 18.75%)`,
-
-            backgroundPosition: 'center',
-            backgroundSize: '50px 50px',
+            position: '', marginTop: '170px', py: 7,
+            backgroundImage: `radial-gradient(#a4aa79 2px, transparent 12px)`,
+            backgroundSize: '32px 32px',
             backgroundAttachment: 'fixed',
+            backgroundColor: '#849643',
+        
         }}>
             <Typography variant="h3" align="center" color={'white'} sx={{ my: 6, fontWeight: 800 }} >
                 Personalized Recommendation

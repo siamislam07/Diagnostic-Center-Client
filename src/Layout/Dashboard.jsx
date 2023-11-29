@@ -24,6 +24,7 @@ import { BookOutlined, Collections, Home, LocalHospital, Man, PlaylistAddCheckCi
 import H from '../assets/Home/animations/navbarH.json'
 import { useLottie } from 'lottie-react';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
+import useAdmin from '../Hooks/useAdmin';
 // import { mainListItems, secondaryListItems } from './listItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
@@ -85,7 +86,7 @@ export default function Dashboard() {
 
     const location = useLocation()
 
-    const isAdmin = true
+    const [isAdmin] = useAdmin()
 
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
@@ -170,8 +171,8 @@ export default function Dashboard() {
                                 </ListItemButton>
 
                                 <ListItemButton component={Link}
-                                    to={"/dashboard/appointments"}
-                                    selected={location.pathname === '/dashboard/appointments'}
+                                    to={"/dashboard/addTest"}
+                                    selected={location.pathname === '/dashboard/addTest'}
                                 >
                                     <ListItemIcon>
                                         <PlaylistAddCheckCircle />

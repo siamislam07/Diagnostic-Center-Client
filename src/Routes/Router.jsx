@@ -16,6 +16,7 @@ import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import Appointments from "../pages/Dashboard/Appointments/Appointments";
 import TestResult from "../pages/Dashboard/Test Result/TestResult";
 import AllUsers from "../pages/Dashboard/All users/AllUsers";
+import AddTest from "../pages/Dashboard/AddTest/AddTest";
 
 export const Router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ export const Router = createBrowserRouter([
             {
                 path:'users',
                 element:<AllUsers></AllUsers>
+            },
+            {
+                path:'addTest',
+                element:<AddTest></AddTest>
             }
         ]
 
