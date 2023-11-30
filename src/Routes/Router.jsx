@@ -17,6 +17,8 @@ import Appointments from "../pages/Dashboard/Appointments/Appointments";
 import TestResult from "../pages/Dashboard/Test Result/TestResult";
 import AllUsers from "../pages/Dashboard/All users/AllUsers";
 import AddTest from "../pages/Dashboard/AddTest/AddTest";
+import AdminRoute from "./AdminRoute";
+import AllTestsDash from "../pages/Dashboard/AllTests/AllTestsDash";
 
 export const Router = createBrowserRouter([
     {
@@ -68,11 +70,15 @@ export const Router = createBrowserRouter([
             //admin routes
             {
                 path:'users',
-                element:<AllUsers></AllUsers>
+                element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path:'addTest',
-                element:<AddTest></AddTest>
+                element:<AdminRoute><AddTest></AddTest></AdminRoute>
+            },
+            {
+                path:'allTests',
+                element:<AdminRoute><AllTestsDash></AllTestsDash></AdminRoute>
             }
         ]
 

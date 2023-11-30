@@ -4,14 +4,16 @@ import img from "../../assets/all-test/book-test-banner2.png"
 import Title from "../Shared/Title/Title";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const AllTests = () => {
     const [testData, setTestData] = useState([])
+    const axiosPublic = useAxiosPublic()
     // console.log(testData);
     useEffect(() => {
-        fetch('http://localhost:5000/allTests')
-            .then(res => res.json())
-            .then(data => setTestData(data))
-    }, [])
+        axiosPublic.get('/allTests')
+        .then(response => setTestData(response.data))
+        .catch(error => console.error('Error fetching data:', error));
+    }, [axiosPublic])
 
 
     return (
@@ -37,26 +39,29 @@ const AllTests = () => {
                             <Card sx={{ maxWidth: 345, margin: 'auto' }}>
                                 <CardMedia
                                     sx={{ height: 140 }}
-                                    image={test.image}
+                                    image={test?.imgUrl}
                                     title="green iguana"
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        {test.title}
+                                        {test?.title}
                                     </Typography>
                                     <Typography gutterBottom variant="body2" color="text.secondary">
-                                        {test.description}
+                                        {test?.details}
                                     </Typography>
                                     <Typography gutterBottom variant="body2" color="text.secondary">
-                                        Date: {test.availableDate.date}
+                                        Date: {test?.date}
+                                    </Typography>
+                                    <Typography gutterBottom variant="body2" color="text.secondary">
+                                        Slots: {test?.slots}
                                     </Typography>
                                     <Typography variant="" color="text.secondary">
-                                        Slots: {test.availableDate.slots}
+                                        Price: {test?.price}$
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
                                     {/* <Button size="small">Share</Button> */}
-                                    <Link to={`/details/${test._id}`}>
+                                    <Link to={`/details/${test?._id}`}>
                                         <Button size="small" variant="outlined">Details</Button>
                                     </Link>
                                 </CardActions>

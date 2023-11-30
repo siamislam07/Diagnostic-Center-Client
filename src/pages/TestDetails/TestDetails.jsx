@@ -82,7 +82,7 @@ const TestDetails = () => {
                     </Grid>
                     <Grid item xs={12} lg={6} sx={{ marginTop: '30px' }}>
                         <Typography variant="h2">{test?.title}</Typography>
-                        <Typography variant="h4">{test?.description}</Typography>
+                        <Typography variant="h4">{test?.details}</Typography>
                         <Button onClick={handleBookNow} sx={{ marginTop: '12rem' }} variant="outlined" fullWidth>Book Now</Button>
                     </Grid>
 

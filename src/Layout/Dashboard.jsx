@@ -178,12 +178,12 @@ export default function Dashboard() {
                                         <PlaylistAddCheckCircle />
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="Add a Test" />
+                                        primary="ADD a Test" />
                                 </ListItemButton>
 
                                 <ListItemButton component={Link}
-                                    to={"/dashboard/testResult"}
-                                    selected={location.pathname === '/dashboard/testResult'}
+                                    to={"/dashboard/allTests"}
+                                    selected={location.pathname === '/dashboard/allTests'}
                                 >
                                     <ListItemIcon>
                                         <AllInboxIcon />

@@ -125,7 +125,9 @@ const Register = () => {
 
             //todo: save data in user data
             const dbResponse = await saveUser(result?.user, obj)
+
             console.log(dbResponse);
+            
             toast.success('Register Successful')
             navigate(location?.state ? location.state : '/')
             toast.warning('Please Login')

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 
 const AdminRoute = ({children}) => {
-    const [user, isItLoading] = useAuth()
+    const {user, isItLoading} = useAuth()
     const [ isAdmin, isAdminLoading] = useAdmin()
     const location = useLocation()
 
@@ -18,7 +18,7 @@ const AdminRoute = ({children}) => {
         return children
     }
 
-    return  <Navigate state={location.pathname} to='/login'> {toast.error("Oops! It seems my code is on a coffee break ☕. Please login first or register to wake it up!")}</Navigate>
+    return  <Navigate state={location.pathname} to='/'> {toast.error("Admins only! Redirecting home. No VIP pass, no entry. 🏠😄 ")}</Navigate>
 };
 
 export default AdminRoute;
