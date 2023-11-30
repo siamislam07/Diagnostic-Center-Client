@@ -28,7 +28,7 @@ const AllTestsDash = () => {
         }
     })
 
-    console.log('inthe asfads', test);
+    // console.log('inthe asfads', test);
 
     const handleDelete = test => {
         Swal.fire({

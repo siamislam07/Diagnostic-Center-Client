@@ -34,7 +34,7 @@ const Register = () => {
 
             }
             catch (error) {
-                console.log('error fetching data', error);
+                // console.log('error fetching data', error);
             }
         }
         fetchData()
@@ -48,7 +48,7 @@ const Register = () => {
                 setUpazila(data)
             }
             catch (error) {
-                console.log('error fetching data', error);
+                // console.log('error fetching data', error);
             }
         }
         fetchData()
@@ -121,12 +121,12 @@ const Register = () => {
             const result = await createUser(email, password)
 
             await updateUserProfile(name, imageData?.data?.display_url)
-            console.log(result);
+            // console.log(result);
 
             //todo: save data in user data
             const dbResponse = await saveUser(result?.user, obj)
 
-            console.log(dbResponse);
+            // console.log(dbResponse);
             
             toast.success('Register Successful')
             navigate(location?.state ? location.state : '/')
@@ -140,7 +140,7 @@ const Register = () => {
             // get token
         }
         catch (err) {
-            console.log(err);
+            // console.log(err);
             toast.error(err.message)
         }
         // const formData = new FormData()

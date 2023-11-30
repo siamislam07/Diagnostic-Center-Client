@@ -16,7 +16,7 @@ const UserHome = () => {
             return res.data
         }
     })
-    console.log(userDetails);
+    // console.log(userDetails);
     return (
         <Grid container spacing={3}>
             {/* Chart */}

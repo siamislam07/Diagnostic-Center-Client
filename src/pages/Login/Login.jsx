@@ -24,11 +24,11 @@ const Login = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log('from logijn', email, password);
+        // console.log('from logijn', email, password);
         login(email, password)
         .then(result=>{
             const user = result.user
-            console.log(user);
+            // console.log(user);
             toast.success("Login successful! Welcome back! 🎉")
             navigate(location?.state ? location.state : '/dashboard/user')
         })

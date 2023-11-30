@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 const PrivateRoute = ({children}) => {
     const {isItLoading, user} = useAuth()
     const location = useLocation()
-    console.log(location);
+    // console.log(location);
     if (isItLoading) {
         return <Typography>Please Wait</Typography>
     }

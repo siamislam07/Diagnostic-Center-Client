@@ -6,7 +6,7 @@ import { useState } from "react";
 const FeaturedTests = () => {
     const axiosPublic = useAxiosPublic()
     const [data, setData] = useState([])
-    console.log(data);
+    // console.log(data);
     axiosPublic.get('/allTests')
     .then(res=>{
         setData(res.data)

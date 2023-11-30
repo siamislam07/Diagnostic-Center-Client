@@ -43,7 +43,7 @@ function Navbar() {
     };
 
     const handleLogout = () => {
-        console.log('logout alhamdulillah');
+        // console.log('logout alhamdulillah');
         logOut()
             .then()
             .catch()

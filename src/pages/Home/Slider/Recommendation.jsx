@@ -18,7 +18,7 @@ import slide5 from '../../../assets/home/slider5.png'
 
 const Recommendation = () => {
     const [recommendations, setRecommendations] = useState()
-    console.log(recommendations);
+    // console.log(recommendations);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -27,7 +27,7 @@ const Recommendation = () => {
                 setRecommendations(data)
             }
             catch (error) {
-                console.log('error fetching data', error);
+                // console.log('error fetching data', error);
             }
         }
         fetchData()

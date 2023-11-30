@@ -27,7 +27,7 @@ const AddTest = () => {
     
     const [value, setValue] = useState(null)
     const formattedDate = value? dayjs(value).format('DD-MM-YYYY'):null
-    console.log('date',formattedDate);
+    // console.log('date',formattedDate);
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -56,7 +56,7 @@ const AddTest = () => {
             
         }
 
-        console.log(testInfo);
+        // console.log(testInfo);
     }
 
 

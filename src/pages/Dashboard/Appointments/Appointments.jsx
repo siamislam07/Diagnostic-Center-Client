@@ -14,7 +14,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Appointments = () => {
     const [booking, refetch] = useTest()
-    console.log(booking);
+    // console.log(booking);
     const axiosSecure = useAxiosSecure()
 
     const handleDelete = (id) => {
@@ -30,7 +30,7 @@ const Appointments = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/userTest/${id}`)
                 .then(res=>{
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res.data.deletedCount > 0) {
                         refetch()
                         Swal.fire(

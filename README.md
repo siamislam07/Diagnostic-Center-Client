@@ -1,6 +1,6 @@
 # InnovateHealth Hub
 
-live link -  
+live link -   https://diagnostic-center-8422e.web.app/
 
 # My Project Feature
 - From navbar user can go to Home, login page and register page for login and register

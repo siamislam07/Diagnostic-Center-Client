@@ -11,10 +11,10 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const TestDetails = () => {
     const { id } = useParams()
-    console.log(id);
+    // console.log(id);
     const [test, setTest] = useState({})
     const { user } = useAuth()
-    console.log(test);
+    // console.log(test);
     const axisSecure = useAxiosSecure()
     const [loading, setLoading] = useState(false)
 
@@ -36,12 +36,12 @@ const TestDetails = () => {
         }
         axisSecure.post('/userTest', testItem)
         .then(res=>{
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.insertedId) {
                 toast.success('Booked Successfully, Please Check you dashboard')
             }
         })
-        console.log(testItem);
+        // console.log(testItem);
     }
 
     useEffect(() => {
