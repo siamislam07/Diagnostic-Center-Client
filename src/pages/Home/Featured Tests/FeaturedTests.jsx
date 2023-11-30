@@ -1,7 +1,16 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
 import Title from "../../Shared/Title/Title";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useState } from "react";
 
 const FeaturedTests = () => {
+    const axiosPublic = useAxiosPublic()
+    const [data, setData] = useState([])
+    console.log(data);
+    axiosPublic.get('/allTests')
+    .then(res=>{
+        setData(res.data)
+    })
     return (
         <Grid sx={{ marginTop: '170px' }}>
             <Title color={{ color: '#023E8A' }} title={'Popular Tests'}>Popular Tests</Title>
@@ -12,16 +21,15 @@ const FeaturedTests = () => {
                         <Card sx={{ maxWidth: 345, margin: 'auto' }}>
                             <CardMedia
                                 sx={{ height: 140 }}
-                                image="https://th.bing.com/th/id/OIP.XAC_ssYAZzY1nQ4qGlQq7gHaD5?rs=1&pid=ImgDetMain"
-                                title="green iguana"
+                                image={data[0]?.imgUrl}
+                                title="Blood"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Lizard
+                                    {data[0]?.title}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    {data[0]?.details}
                                 </Typography>
                             </CardContent>
                             {/* <CardActions>
@@ -34,16 +42,15 @@ const FeaturedTests = () => {
                         <Card item sx={{ maxWidth: 345, margin: 'auto' }}>
                             <CardMedia
                                 sx={{ height: 140 }}
-                                image="https://th.bing.com/th/id/OIP.XAC_ssYAZzY1nQ4qGlQq7gHaD5?rs=1&pid=ImgDetMain"
+                                image={data[1]?.imgUrl}
                                 title="green iguana"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Lizard
+                                    {data[1]?.title}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    {data[1]?.details}
                                 </Typography>
                             </CardContent>
 
@@ -53,16 +60,15 @@ const FeaturedTests = () => {
                         <Card item sx={{ maxWidth: 345, margin: 'auto' }}>
                             <CardMedia
                                 sx={{ height: 140 }}
-                                image="https://th.bing.com/th/id/OIP.XAC_ssYAZzY1nQ4qGlQq7gHaD5?rs=1&pid=ImgDetMain"
+                                image={data[2]?.imgUrl}
                                 title="green iguana"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Lizard
+                                    {data[2]?.title}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    {data[2]?.details}
                                 </Typography>
                             </CardContent>
                             {/* <CardActions>
@@ -75,16 +81,15 @@ const FeaturedTests = () => {
                         <Card item sx={{ maxWidth: 345, margin: 'auto' }}>
                             <CardMedia
                                 sx={{ height: 140 }}
-                                image="https://th.bing.com/th/id/OIP.XAC_ssYAZzY1nQ4qGlQq7gHaD5?rs=1&pid=ImgDetMain"
+                                image={data[3]?.imgUrl}
                                 title="green iguana"
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Lizard
+                                    {data[3]?.title}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    {data[3]?.details}
                                 </Typography>
                             </CardContent>
                             {/* <CardActions>

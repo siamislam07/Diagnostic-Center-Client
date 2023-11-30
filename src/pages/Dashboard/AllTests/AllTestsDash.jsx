@@ -3,9 +3,23 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import UpdateModal from "../UpdateModal/UpdateModal";
 
 const AllTestsDash = () => {
     const axiosSecure = useAxiosSecure()
+    const [open, setOpen] = useState(false);
+    
+    const handleOpen = (test) => {
+        setSelectedTest(test)
+        setOpen(true)
+    };
+    const handleClose = () => setOpen(false);
+    const handleRefetch = ()=>{
+        refetch()
+    }
+    const [selectedTest, setSelectedTest] = useState(null)
+
     const { data: test = [], refetch } = useQuery({
         queryKey: ['test'],
         queryFn: async () => {
@@ -14,9 +28,7 @@ const AllTestsDash = () => {
         }
     })
 
-    const handleUpdate=()=>{
-
-    }
+    console.log('inthe asfads', test);
 
     const handleDelete = test => {
         Swal.fire({
@@ -31,7 +43,7 @@ const AllTestsDash = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/allTests/${test._id}`)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         if (res.data.deletedCount > 0) {
                             refetch()
                             Swal.fire(
@@ -58,6 +70,7 @@ const AllTestsDash = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
+
                     {test.map((row) => (
                         // console.log(row)
                         <TableRow
@@ -68,12 +81,23 @@ const AllTestsDash = () => {
                                 {row.title}
                             </TableCell>
                             <TableCell align="left">{row.details}</TableCell>
-                            <TableCell onClick={() => handleUpdate(row)} align="left" sx={{ cursor: 'pointer', '&:hover': { color: 'red' } }}>Update</TableCell>
+                            <TableCell onClick={() => handleOpen(row)} align="left" sx={{ cursor: 'pointer', '&:hover': { color: 'red' } }}>Update</TableCell>
                             {/* <Button fullWidth  align="center" sx={{ marginTop:'6px'}} >Cancel</Button> */}
-                            <TableCell onClick={() => handleDelete(row)} align="center" sx={{ cursor: 'pointer', '&:hover': { color: 'red' } }}><Delete/></TableCell>
+                            <TableCell onClick={() => handleDelete(row)} align="center" sx={{ cursor: 'pointer', '&:hover': { color: 'red' } }}><Delete /></TableCell>
+
                         </TableRow>
+
+
                     ))}
+                    <UpdateModal
+                        open={open}
+                        handleClose={handleClose}
+                        selectedTest={selectedTest}
+                        handleRefetch={handleRefetch}
+                    />
+
                 </TableBody>
+
             </Table>
         </TableContainer>
     );

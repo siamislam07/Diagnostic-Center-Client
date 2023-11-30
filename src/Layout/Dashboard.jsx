@@ -9,7 +9,7 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
+
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -20,7 +20,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { BookOutlined, Collections, Home, LocalHospital, Man, PlaylistAddCheckCircle, ViewCarousel } from '@mui/icons-material';
+import { BookOutlined, Collections, Home, LocalHospital, Man, PeopleAlt, PlaylistAddCheckCircle, ViewCarousel } from '@mui/icons-material';
 import H from '../assets/Home/animations/navbarH.json'
 import { useLottie } from 'lottie-react';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
@@ -132,11 +132,7 @@ export default function Dashboard() {
                         >
                             Welcome to your DashBoard
                         </Typography>
-                        {/* <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton> */}
+
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
@@ -161,11 +157,20 @@ export default function Dashboard() {
                         {
                             isAdmin ? <>
                                 <ListItemButton component={Link}
+                                    to={"/dashboard/user"}
+                                    selected={location.pathname === '/dashboard/user'}
+                                >
+                                    <ListItemIcon>
+                                        <Man />
+                                    </ListItemIcon>
+                                    <ListItemText primary="My Profile" />
+                                </ListItemButton>
+                                <ListItemButton component={Link}
                                     to={"/dashboard/users"}
                                     selected={location.pathname === '/dashboard/users'}
                                 >
                                     <ListItemIcon>
-                                        <Man />
+                                        <PeopleAlt />
                                     </ListItemIcon>
                                     <ListItemText primary="All users" />
                                 </ListItemButton>
@@ -193,8 +198,8 @@ export default function Dashboard() {
                                 </ListItemButton>
 
                                 <ListItemButton component={Link}
-                                    to={"/dashboard/testResult"}
-                                    selected={location.pathname === '/dashboard/testResult'}
+                                    to={"/dashboard/reservation"}
+                                    selected={location.pathname === '/dashboard/reservation'}
                                 >
                                     <ListItemIcon>
                                         <ViewCarousel />
@@ -203,7 +208,7 @@ export default function Dashboard() {
                                         primary="Reservation" />
                                 </ListItemButton>
 
-                                <ListItemButton component={Link}
+                                {/* <ListItemButton component={Link}
                                     to={"/dashboard/testResult"}
                                     selected={location.pathname === '/dashboard/testResult'}
                                 >
@@ -223,7 +228,7 @@ export default function Dashboard() {
                                     </ListItemIcon>
                                     <ListItemText
                                         primary="All Banners" />
-                                </ListItemButton>
+                                </ListItemButton> */}
 
 
                             </> : <>
@@ -248,7 +253,7 @@ export default function Dashboard() {
                                         primary="My Upcoming Appointments" />
                                 </ListItemButton>
 
-                                <ListItemButton component={Link}
+                                <ListItemButton  component={Link}
                                     to={"/dashboard/testResult"}
                                     selected={location.pathname === '/dashboard/testResult'}
                                 >
@@ -263,7 +268,7 @@ export default function Dashboard() {
 
                         }
 
-                        <Divider />
+                        <Divider sx={{marginTop:'1rem'}}/>
                         {/* common for all  */}
                         <ListItemButton component={Link}
                             to={"/"}>

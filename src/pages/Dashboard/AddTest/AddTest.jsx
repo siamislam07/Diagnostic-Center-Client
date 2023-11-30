@@ -24,6 +24,7 @@ const AddTest = () => {
         whiteSpace: 'nowrap',
         width: 1,
     });
+    
     const [value, setValue] = useState(null)
     const formattedDate = value? dayjs(value).format('DD-MM-YYYY'):null
     console.log('date',formattedDate);

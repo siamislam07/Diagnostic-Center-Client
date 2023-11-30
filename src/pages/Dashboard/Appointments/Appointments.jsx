@@ -66,7 +66,7 @@ const Appointments = () => {
                             <TableCell component="th" scope="row">
                                 {row.title}
                             </TableCell>
-                            <TableCell align="left">{row.description}</TableCell>
+                            <TableCell align="left">{row.details}</TableCell>
                             <TableCell align="left">{row.date}</TableCell>
                             {/* <Button fullWidth  align="center" sx={{ marginTop:'6px'}} >Cancel</Button> */}
                             <TableCell onClick={() => handleDelete(row._id)} align="center" sx={{ cursor: 'pointer', '&:hover': { color: 'red' } }}><EventBusy /></TableCell>

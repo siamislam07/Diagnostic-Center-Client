@@ -28,11 +28,11 @@ const TestDetails = () => {
 
     const handleBookNow = () => {
         const testItem ={
-            testId: test._id,
-            email: user.email,
-            title: test.title,
-            date : test.availableDate.date,
-            description: test.description
+            testId: test?._id,
+            email: user?.email,
+            title: test?.title,
+            date : test?.date,
+            details: test?.details
         }
         axisSecure.post('/userTest', testItem)
         .then(res=>{
@@ -54,7 +54,7 @@ const TestDetails = () => {
                 setTest(oneData)
                 setLoading(false)
             })
-    }, [id])
+    }, [id, axisSecure])
 
 
 
@@ -66,7 +66,7 @@ const TestDetails = () => {
 
                 sx={{
                     py: ['20%', '15%', '10%'],
-                    backgroundImage: `linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url(${test?.image})`,
+                    backgroundImage: `linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url(${test?.imgUrl})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     overflow: 'hidden',

@@ -28,7 +28,7 @@ const AllTests = () => {
 
                 }}>
             </Grid>
-            <Title color={{ color: '#023E8A' }} title={'Popular Tests'}></Title>
+            <Title color={{ color: '#023E8A' }} title={'All Tests'}></Title>
             <Container maxWidth="lg">
 
                 <Grid container spacing={3}  >
