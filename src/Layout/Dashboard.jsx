@@ -92,6 +92,7 @@ export default function Dashboard() {
     const toggleDrawer = () => {
         setOpen(!open);
     };
+    
     const options = {
         animationData: H,
         loop: 2,

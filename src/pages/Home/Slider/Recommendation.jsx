@@ -52,18 +52,20 @@ const Recommendation = () => {
 
     return (
         <Grid sx={{
+            // backgroundImage:'https://th.bing.com/th/id/OIP.Tomj32XOrdxdRkbOiz3GYAHaKa?rs=1&pid=ImgDetMain',
             position: '', marginTop: '170px', py: 7,
-            backgroundImage: `radial-gradient(#a4aa79 2px, transparent 12px)`,
+            backgroundImage: 'radial-gradient(white 2px, transparent 4px)',
             backgroundSize: '32px 32px',
             backgroundAttachment: 'fixed',
-            backgroundColor: '#849643',
-        
+            backgroundColor: '#0288d1',
+            
+
         }}>
             <Typography variant="h3" align="center" color={'white'} sx={{ my: 6, fontWeight: 800 }} >
                 Personalized Recommendation
 
             </Typography>
-            <Container maxWidth="lg" >
+            <Container maxWidth="lg" sx={{cursor:'grab'}} >
                 <Swiper
                     slidesPerView={3}
                     spaceBetween={30}
@@ -75,7 +77,7 @@ const Recommendation = () => {
                     breakpoints={responsiveBreakpoints}
                 >
                     <SwiperSlide className="swiper-slide">
-                        <img className="swiper-image" src={slide1} alt="Recommendation_Slider" />
+                        <img className="swiper-image"  src={slide1} alt="Recommendation_Slider" />
                         <div className="slide-overlay">
                             <Typography gutterBottom variant="h6" className="slide-text">{recommendations?.[0]?.title}</Typography>
                             <Typography variant="body2" sx={{ fontWeight: 700, fontSize: '1rem' }} className="slide-description">{recommendations?.[0]?.content}</Typography>

@@ -85,7 +85,7 @@ const TestDetails = () => {
                         <Typography variant="h4">{test?.details}</Typography>
                         <Button onClick={handleBookNow} sx={{ marginTop: '12rem' }} variant="outlined" fullWidth>Book Now</Button>
                     </Grid>
-
+                    
                 </Grid>
             </Container>
         </Grid>
